@@ -1,0 +1,117 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato&family=Montserrat&family=Raleway&display=swap");
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0; }
+
+body {
+  font-family: "Motserrat", sans-serif;
+  background: linear-gradient(6deg, #74ebd5 0%, #acb6e5 100%);
+  width: 1180px;
+  min-height: 100vh;
+  margin: 50px auto 50px auto; }
+
+.btn {
+  position: relative;
+  cursor: pointer;
+  padding: 0.5rem 1.5rem;
+  font-size: 1.2rem;
+  margin: 0.7rem 1rem;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 7px;
+  color: linear-gradient(6deg, #74ebd5 0%, #acb6e5 100%);
+  border: 0;
+  transform: scale(1);
+  transition: transform 0.2s ease;
+  transition: background 0.2s ease; }
+  .btn:hover {
+    background: #f2f2f2;
+    transition: background 0.2s ease; }
+  .btn:focus {
+    outline: none; }
+  .btn:active {
+    transform: scale(1.05);
+    transition: transform 0.2s ease; }
+  .btn .fas {
+    position: absolute;
+    bottom: -5px;
+    right: -4px;
+    color: green; }
+
+.selected {
+  border: 2px solid green; }
+
+.highlight {
+  font-weight: bold; }
+
+.currencies h3 {
+  font-size: 2rem;
+  font-weight: normal;
+  margin-bottom: 1rem; }
+
+.interval h3 {
+  font-size: 2rem;
+  font-weight: normal;
+  margin: 1rem 0; }
+
+.container .chart {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin: 1rem;
+  border-bottom: 1px solid #333;
+  box-shadow: 5px 5px 5px #333;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 15px; }
+  .container .chart .radialBar {
+    margin-top: 1rem; }
+  .container .chart .single {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%; }
+    .container .chart .single .item {
+      padding: 0 1rem;
+      margin-top: -1.5rem;
+      border-radius: 15px;
+      height: 250px;
+      width: 500px; }
+      .container .chart .single .item .name {
+        display: flex;
+        align-items: center;
+        justify-content: space-between; }
+        .container .chart .single .item .name .currency {
+          font-size: 2rem; }
+          .container .chart .single .item .name .currency img {
+            margin-right: 9px;
+            width: 25px;
+            height: 25px; }
+          .container .chart .single .item .name .currency span {
+            margin-left: 4px;
+            color: #999;
+            font-size: 1.3rem; }
+        .container .chart .single .item .name .rank {
+          font-size: 1.2rem; }
+      .container .chart .single .item .prices {
+        display: block;
+        font-size: 1.2rem;
+        margin-top: 1rem; }
+        .container .chart .single .item .prices div {
+          margin: 1rem 0; }
+
+.placeholder {
+  width: 80%;
+  height: 200px;
+  background-color: #999;
+  margin: 2rem;
+  position: relative;
+  animation: 1.7s forwards infinite linear contentPlaceholder;
+  background: #f2f2f2;
+  background: linear-gradient(to right, #eee 2%, #dddddd 18%, #eee 33%);
+  background-size: 1300px; }
+
+@keyframes contentPlaceholder {
+  0% {
+    background-position: -650px 0; }
+  100% {
+    background-position: 650px 0; } }
