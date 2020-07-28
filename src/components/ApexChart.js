@@ -60,24 +60,26 @@ export default function ApexChart({ data, interval, theme }) {
       >
         <div className="single">
           <div className="item">
+
             <div className="name">
               <div className="currency">
                 <img src={x.logo_url} alt={x.id} />
                 {x.name}
                 <span>({x.id})</span>
               </div>
-              <div className="rank">Rank: {x.rank}</div>
+              <span className="rank">Rank: {x.rank}</span>
             </div>
 
             <div className="prices">
               <div>
                 Price:
                 {" "}
-                <span className="highlight">
-                  {numberWithCommas(x.price) + " €"}
-                </span>
-                . Updated <span>{timeSince(x.price_timestamp)}.</span>
+                <span className="highlight">{numberWithCommas(x.price) + " €. "}</span>
+                Updated
+                {" "}
+                <span>{timeSince(x.price_timestamp)}.</span>
               </div>
+
               <div>
                 Market Cap:
                 {" "}
@@ -85,6 +87,7 @@ export default function ApexChart({ data, interval, theme }) {
                   {numberWithCommas(x.market_cap) + " €."}
                 </span>
               </div>
+
               <div>
                 Circluating Supply:
                 {" "}
@@ -92,6 +95,7 @@ export default function ApexChart({ data, interval, theme }) {
                   {x.circulating_supply + " pcs."}
                 </span>
               </div>
+
               <div>
                 Highest price recorded
                 {" "}

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import ApexChart from './ApexChart';
-import { ThemeContext, themes } from './ThemeContext';
-import ThemeButton from './ThemeButton';
 
+import { ThemeContext, themes } from '../contexts/ThemeContext';
+import ThemeButton from './ThemeButton';
 import '../css/main.css';
 
 const currencyList = [
@@ -61,11 +61,10 @@ const App = () => {
           }}
         >
           {currencyItem}
-          {currency.includes(currencyItem) ? (
-            <i className="fas fa-check-circle"></i>
-          ) : (
-              ''
-            )}
+          {currency.includes(currencyItem)
+            ? (<i className="fas fa-check-circle"></i>)
+            : ('')
+          }
         </button>
       );
     });
@@ -89,7 +88,8 @@ const App = () => {
           {time}
           {interval.includes(time)
             ? (<i className="fas fa-check-circle"></i>)
-            : ("")}
+            : ("")
+          }
         </button>
       );
     });
