@@ -52,13 +52,12 @@ export default function ApexChart({ data, interval, theme }) {
       style={{
         background: theme.foreground,
         color: theme.textcolor,
-        boxShadow: theme.boxshadow
+        boxShadow: theme.boxshadow,
       }}
       className="chart"
     >
       <div className="single">
         <div className="item">
-
           <div className="name">
             <div className="currency">
               <img src={data.logo_url} alt={data.id} />
@@ -73,14 +72,31 @@ export default function ApexChart({ data, interval, theme }) {
               Price:
                 {" "}
               <span className="highlight">{numberWithCommas(data.price) + " €. "}</span>
-                Updated
+              <div
+                className="tooltip"
+                style={{
+                  color: theme.bordercolor,
+                  background: theme.foreground,
+                }}
+              >
+                <i className="fas fa-info-circle"></i>
+                <div
+                  className="tooltiptext"
+                  style={{
+                    color: theme.foreground,
+                    background: theme.bordercolor,
+                  }}
+                >
+                  Updated
                 {" "}
-              <span>{timeSince(data.price_timestamp)}.</span>
+                  <span>{timeSince(data.price_timestamp)}.</span>
+                </div>
+              </div>
             </div>
 
             <div>
               Market Cap:
-                {" "}
+              {" "}
               <span className="highlight">
                 {numberWithCommas(data.market_cap) + " €."}
               </span>
@@ -88,7 +104,7 @@ export default function ApexChart({ data, interval, theme }) {
 
             <div>
               Circluating Supply:
-                {" "}
+              {" "}
               <span className="highlight">
                 {data.circulating_supply + " pcs."}
               </span>
@@ -96,7 +112,7 @@ export default function ApexChart({ data, interval, theme }) {
 
             <div>
               Highest price recorded
-                {" "}
+              {" "}
               <span className="highlight">
                 {numberWithCommas(data.high) + "€."}
               </span>
@@ -107,87 +123,65 @@ export default function ApexChart({ data, interval, theme }) {
         </div>
       </div>
       <Chart
-        type="radialBar"
-        className="radialBar"
-        width={300}
+        type="line"
+        className="line"
+        width={400}
         height={300}
-        series={[Math.abs(data[interval].price_change)]}
+        series={[{
+          name: data.name,
+          data: [data.price, data.price, data.price - data[interval].price_change],
+        }]}
         options={{
           chart: {
             height: 350,
-            type: "radialBar",
+            type: "line",
             toolbar: {
-              show: true,
+              show: false,
             },
           },
-          plotOptions: {
-            radialBar: {
-              startAngle: -135,
-              endAngle: 225,
-              hollow: {
-                margin: 0,
-                size: "70%",
-                background: "#fff",
-                dropShadow: {
-                  enabled: true,
-                  top: 3,
-                  left: 0,
-                  blur: 4,
-                  opacity: 0.24,
-                },
-              },
-              track: {
-                background: "#fff",
-                strokeWidth: "67%",
-                margin: 0,
-                dropShadow: {
-                  enabled: true,
-                  top: -3,
-                  left: 0,
-                  blur: 4,
-                  opacity: 0.35,
-                },
-              },
-
-              dataLabels: {
-                show: true,
-                name: {
-                  offsetY: -10,
-                  show: true,
-                  color: "#888",
-                  fontSize: "17px",
-                },
-                value: {
-                  formatter: function (val) {
-                    return parseInt(val);
-                  },
-                  color: "#111",
-                  fontSize: "36px",
-                  show: true,
-                },
-              },
+          tooltip: {
+            theme: theme.type === 'light' ? 'light' : 'dark',
+            x: {
+              show: false,
             },
           },
-          fill: {
-            type: "gradient",
-            colors: ["#e2e734"],
-            gradient: {
-              shade: "dark",
-              type: "horizontal",
-              shadeIntensity: 0.5,
-              gradientToColors: [
-                data[interval].price_change > 0 ? "#27d853" : "#ef3636",
-              ],
-              inverseColors: true,
-              stops: [0, 100],
-            },
+          dataLabels: {
+            enabled: false,
           },
           stroke: {
-            lineCap: "round",
+            curve: "smooth",
           },
-          labels: [
-            data[interval].price_change > 1 ? "Price rise(€)" : "Price fall(€)",
-          ],
+          title: {
+            text: `${data.name} price change.`,
+            align: 'center',
+            style: {
+              color: theme.textcolor,
+            },
+          },
+          grid: {
+            row: {
+              colors: [theme.foreground, theme.background],
+              opacity: 0.5,
+            },
+          },
+          xaxis: {
+            categories: ['Before', '', 'After'],
+            labels: {
+              style: {
+                colors: theme.textcolor,
+              },
+            },
+            tooltip: {
+              enabled: false,
+            },
+          },
+          yaxis: {
+            labels: {
+              style: {
+                colors: theme.textcolor,
+              },
+            },
+          },
         }}
         style={{
           display: "flex",

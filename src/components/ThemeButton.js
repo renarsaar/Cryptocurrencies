@@ -11,7 +11,7 @@ export default function ThemeButton(props) {
           style={{
             backgroundColor: theme.background,
             color: theme.textcolor,
-            border: `1px solid ${theme.bordercolor}`
+            border: `1px solid ${theme.bordercolor}`,
           }}
         >
           <i className={`fas fa-${theme.background === '#222' ? 'sun' : 'moon'}`}></i>

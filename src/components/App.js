@@ -6,7 +6,7 @@ import useFetchCryptoData from './useFetchCryptoData';
 import ThemeButton from './ThemeButton';
 import '../css/main.css';
 
-const currencyList = [
+const currencies = [
   "ETH",
   "USDT",
   "XRP",
@@ -27,9 +27,9 @@ const intervals = ["1h", "1d", "7d", "30d", "365d", "ytd"];
 
 export default function App() {
   const [theme, setTheme] = useState({ theme: themes.light, toggleTheme })
-  const [interval, setInterval] = useState('1d');
-  const [currency, setCurrency] = useState([]);
-  const { cryptoData, loading, error } = useFetchCryptoData(interval, currency);
+  const [interval, setInterval] = useState('1h');
+  const [selectedCurrency, setSelectedCurrency] = useState([]);
+  const { cryptoData, loading, error } = useFetchCryptoData(interval, selectedCurrency);
 
   // Toggle Light Theme
   function toggleTheme() {
@@ -43,26 +43,26 @@ export default function App() {
 
   // Render currency buttons
   function renderCurrencies(theme) {
-    return currencyList.map((currencyItem) => {
+    return currencies.map((currency) => {
       return (
         <button
           onClick={() =>
             // Add/Remove element from currency array
-            currency.includes(currencyItem)
-              ? setCurrency(currency.filter((el) => el !== currencyItem))
-              : setCurrency([...currency, currencyItem])
+            selectedCurrency.includes(currency)
+              ? setSelectedCurrency(selectedCurrency.filter((el) => el !== currency))
+              : setSelectedCurrency([...selectedCurrency, currency])
           }
-          data-currency={currencyItem}
-          key={currencyItem}
-          className={currency.includes(currencyItem) ? "selected btn" : "btn"}
+          data-currency={currency}
+          key={currency}
+          className={selectedCurrency.includes(currency) ? "selected btn" : "btn"}
           style={{
             background: theme.foreground,
             color: theme.textcolor,
             border: `1px solid ${theme.bordercolor}`
           }}
         >
-          {currencyItem}
-          {currency.includes(currencyItem)
+          {currency}
+          {selectedCurrency.includes(currency)
             ? (<i className="fas fa-check-circle"></i>)
             : ('')
           }

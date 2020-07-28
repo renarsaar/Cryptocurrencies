@@ -25,6 +25,14 @@ body {
   margin: 50px auto 50px auto;
 }
 
+.selected {
+  border: 2px solid $green-color !important;
+}
+
+.highlight {
+  font-weight: bold;
+}
+
 // Button
 .btn {
   position: relative;
@@ -62,7 +70,32 @@ body {
   }
 }
 
+// Tooltip container
+.tooltip {
+  position: relative;
+  display: inline-block;
+  font-size: 1.3rem;
+
+  &:hover .tooltiptext {
+    visibility: visible;
+  }
+
+  .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px;
+    position: absolute;
+    z-index: 1;
+    bottom: 50%;
+    left: -50px;
+    margin-left: -60px;
+  }
+}
+
 .theme {
+  cursor: pointer;
   position: absolute;
   content: "";
   top: 20px;
@@ -77,13 +110,7 @@ body {
   }
 }
 
-.selected {
-  border: 2px solid $green-color !important;
-}
 
-.highlight {
-  font-weight: bold;
-}
 
 .currencies {
   h3 {
@@ -113,7 +140,7 @@ body {
     background-color: $light-color;
     border-radius: 2px;
 
-    .radialBar {
+    .line {
       margin-top: 1rem;
     }
 

@@ -12,6 +12,12 @@ body {
   min-height: 100vh;
   margin: 50px auto 50px auto; }
 
+.selected {
+  border: 2px solid #0f7428 !important; }
+
+.highlight {
+  font-weight: bold; }
+
 .btn {
   position: relative;
   cursor: pointer;
@@ -39,7 +45,26 @@ body {
     right: -4px;
     color: #0f7428; }
 
+.tooltip {
+  position: relative;
+  display: inline-block;
+  font-size: 1.3rem; }
+  .tooltip:hover .tooltiptext {
+    visibility: visible; }
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px;
+    position: absolute;
+    z-index: 1;
+    bottom: 50%;
+    left: -50px;
+    margin-left: -60px; }
+
 .theme {
+  cursor: pointer;
   position: absolute;
   content: "";
   top: 20px;
@@ -50,12 +75,6 @@ body {
   font-size: 1.4rem; }
   .theme:focus {
     outline: none; }
-
-.selected {
-  border: 2px solid #0f7428 !important; }
-
-.highlight {
-  font-weight: bold; }
 
 .currencies h3 {
   font-size: 2rem;
@@ -76,7 +95,7 @@ body {
   box-shadow: 2px 2px 10px #d5d5d5;
   background-color: #fcfcfc;
   border-radius: 2px; }
-  .container .chart .radialBar {
+  .container .chart .line {
     margin-top: 1rem; }
   .container .chart .single {
     display: flex;

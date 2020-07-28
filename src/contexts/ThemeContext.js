@@ -2,6 +2,7 @@ import React from 'react';
 
 export const themes = {
   light: {
+    type: 'light',
     foreground: '#fcfcfc',
     background: '#eee',
     textcolor: '#333',
@@ -10,6 +11,7 @@ export const themes = {
     placeholderbackground: 'linear-gradient(to right, #eee 2%, #dddddd 18%, #eee 33%)',
   },
   dark: {
+    type: 'dark',
     foreground: '#111',
     background: '#222',
     textcolor: '#eee',
