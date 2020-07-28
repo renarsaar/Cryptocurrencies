@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import ApexChart from './ApexChart';
 
 import { ThemeContext, themes } from '../contexts/ThemeContext';
+import useFetchCryptoData from './useFetchCryptoData';
 import ThemeButton from './ThemeButton';
 import '../css/main.css';
 
@@ -24,11 +25,11 @@ const currencyList = [
 ];
 const intervals = ["1h", "1d", "7d", "30d", "365d", "ytd"];
 
-const App = () => {
+export default function App() {
   const [theme, setTheme] = useState({ theme: themes.light, toggleTheme })
-  const [cryptoData, setCryptoData] = useState([]);
   const [interval, setInterval] = useState('1d');
   const [currency, setCurrency] = useState([]);
+  const { cryptoData, loading, error } = useFetchCryptoData(interval, currency);
 
   // Toggle Light Theme
   function toggleTheme() {
@@ -95,17 +96,6 @@ const App = () => {
     });
   }
 
-  // Fetch prices when currency or interval changes
-  useEffect(() => {
-    fetch(
-      `https://cors-anywhere.herokuapp.com/https://api.nomics.com/v1/currencies/ticker?key=4b9ef3848d3b670d28ce19e1b092f128&ids=${
-      currency.length === 0 ? "BTC" : "BTC," + currency.join()
-      }&interval=${interval}&convert=EUR`
-    )
-      .then((res) => res.json())
-      .then((data) => setCryptoData(data));
-  }, [currency, interval]);
-
   document.body.style.background = theme.theme.background;
   return (
     <ThemeContext.Provider value={theme.theme}>
@@ -113,20 +103,31 @@ const App = () => {
         {theme => (
           <div className="container">
             <ThemeButton toggleTheme={toggleTheme} />
+
             <div className="currencies">
               <h3 style={{ color: theme.textcolor }}>1) Select Cryptocurrencies</h3>
               {renderCurrencies(theme)}
             </div>
+
             <div className="interval">
               <h3 style={{ color: theme.textcolor }}>2) Select Interval</h3>
               {renderIntervals(theme)}
             </div>
-            <ApexChart data={cryptoData} interval={interval} theme={theme} />
+
+            {loading &&
+              <>
+                <div className="placeholder" style={{ background: theme.placeholderbackground }} ></div>
+                <div className="placeholder" style={{ background: theme.placeholderbackground }}></div>
+              </>
+            }
+            {error && <h1>Error... Try refreshing</h1>}
+            {cryptoData.map((data) => {
+              return <ApexChart key={data.id} data={data} interval={interval} theme={theme} />;
+            })}
+
           </div>
         )}
       </ThemeContext.Consumer>
     </ThemeContext.Provider>
   );
 };
-
-export default App;
