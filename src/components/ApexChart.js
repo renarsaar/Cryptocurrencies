@@ -7,26 +7,31 @@ function timeSince(date) {
   const seconds = Math.floor(new Date() - parsedData) / 1000;
   let interval = Math.floor(seconds / 31536000);
 
-  if (interval >= 1)
-    return `${interval === 1 ? "1 year ago" : `${interval} years ago`}`;
+  if (interval >= 1) {
+    return `${interval === 1 ? '1 year ago' : `${interval} years ago`}`;
+  }
   interval = Math.floor(seconds / 2592000);
 
-  if (interval >= 1)
-    return `${interval === 1 ? "1 month ago" : `${interval} months ago`}`;
+  if (interval >= 1) {
+    return `${interval === 1 ? '1 month ago' : `${interval} months ago`}`;
+  }
   interval = Math.floor(seconds / 86400);
 
-  if (interval >= 1)
-    return `${interval === 1 ? "1 day ago" : `${interval} days ago`}`;
+  if (interval >= 1) {
+    return `${interval === 1 ? '1 day ago' : `${interval} days ago`}`;
+  }
   interval = Math.floor(seconds / 3600);
 
-  if (interval >= 1)
-    return `${interval === 1 ? "1 hour ago" : `${interval} hours ago`}`;
+  if (interval >= 1) {
+    return `${interval === 1 ? '1 hour ago' : `${interval} hours ago`}`;
+  }
   interval = Math.floor(seconds / 60);
 
-  if (interval >= 1)
-    return `${interval === 1 ? "1 minute ago" : `${interval} minutes ago`}`;
+  if (interval >= 1) {
+    return `${interval === 1 ? '1 minute ago' : `${interval} minutes ago`}`;
+  }
 
-  return "Just now";
+  return 'Just now';
 }
 
 // Format Price with Commas
@@ -34,17 +39,17 @@ function numberWithCommas(num) {
   return Number.parseFloat(num)
     .toFixed(2)
     .toString()
-    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
 export default function ApexChart({ data, interval, theme }) {
   if (data[interval] === undefined) {
     return (
       <>
-        <div className="placeholder"></div>
-        <div className="placeholder"></div>
+        <div className="placeholder" />
+        <div className="placeholder" />
       </>
-    )
+    );
   }
 
   return (
@@ -62,16 +67,24 @@ export default function ApexChart({ data, interval, theme }) {
             <div className="currency">
               <img src={data.logo_url} alt={data.id} />
               {data.name}
-              <span>({data.id})</span>
+              <span>
+                (
+                {data.id}
+                )
+              </span>
             </div>
-            <span className="rank">Rank: {data.rank}</span>
+            <span className="rank">
+              Rank:
+              {' '}
+              {data.rank}
+            </span>
           </div>
 
           <div className="prices">
             <div>
               Price:
-                {" "}
-              <span className="highlight">{numberWithCommas(data.price) + " €. "}</span>
+              {' '}
+              <span className="highlight">{`${numberWithCommas(data.price)} €. `}</span>
               <div
                 className="tooltip"
                 style={{
@@ -79,7 +92,7 @@ export default function ApexChart({ data, interval, theme }) {
                   background: theme.foreground,
                 }}
               >
-                <i className="fas fa-info-circle"></i>
+                <i className="fas fa-info-circle" />
                 <div
                   className="tooltiptext"
                   style={{
@@ -88,35 +101,37 @@ export default function ApexChart({ data, interval, theme }) {
                   }}
                 >
                   Updated
-                {" "}
-                  <span>{timeSince(data.price_timestamp)}.</span>
+                  {' '}
+                  <span>
+                    {timeSince(data.price_timestamp)}
+                  </span>
                 </div>
               </div>
             </div>
 
             <div>
               Market Cap:
-              {" "}
+              {' '}
               <span className="highlight">
-                {numberWithCommas(data.market_cap) + " €."}
+                {`${numberWithCommas(data.price)} €. `}
               </span>
             </div>
 
             <div>
               Circluating Supply:
-              {" "}
+              {' '}
               <span className="highlight">
-                {data.circulating_supply + " pcs."}
+                {`${data.circulating_supply} pcs.`}
               </span>
             </div>
 
             <div>
               Highest price recorded
-              {" "}
+              {' '}
               <span className="highlight">
-                {numberWithCommas(data.high) + "€."}
+                {`${numberWithCommas(data.price)} €. `}
               </span>
-              {" "}
+              {' '}
               {timeSince(data.high_timestamp)}
             </div>
           </div>
@@ -134,7 +149,7 @@ export default function ApexChart({ data, interval, theme }) {
         options={{
           chart: {
             height: 350,
-            type: "line",
+            type: 'line',
             toolbar: {
               show: false,
             },
@@ -149,7 +164,7 @@ export default function ApexChart({ data, interval, theme }) {
             enabled: false,
           },
           stroke: {
-            curve: "smooth",
+            curve: 'smooth',
           },
           title: {
             text: `${data.name} price change.`,
@@ -180,15 +195,22 @@ export default function ApexChart({ data, interval, theme }) {
               style: {
                 colors: theme.textcolor,
               },
+              formatter(val) {
+                if (val >= 1000) return val.toFixed(2);
+                if (val >= 100) return val.toFixed(3);
+                if (val >= 10) return val.toFixed(4);
+                if (val <= 0) return val;
+                return val;
+              },
             },
           },
         }}
         style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
       />
     </div>
   );
-};
+}

@@ -7,100 +7,93 @@ import ThemeButton from './ThemeButton';
 import '../css/main.css';
 
 const currencies = [
-  "ETH",
-  "USDT",
-  "XRP",
-  "BCH",
-  "BSV",
-  "ADA",
-  "LINK",
-  "LTC",
-  "BNB",
-  "CRO",
-  "EOS",
-  "XTZ",
-  "XLM",
-  "XMR",
-  "TRX",
+  'ETH',
+  'USDT',
+  'XRP',
+  'BCH',
+  'BSV',
+  'ADA',
+  'LINK',
+  'LTC',
+  'BNB',
+  'CRO',
+  'EOS',
+  'XTZ',
+  'XLM',
+  'XMR',
+  'TRX',
 ];
-const intervals = ["1h", "1d", "7d", "30d", "365d", "ytd"];
+const intervals = ['1h', '1d', '7d', '30d', '365d', 'ytd'];
 
 export default function App() {
-  const [theme, setTheme] = useState({ theme: themes.light, toggleTheme })
+  const [theme, setTheme] = useState({ theme: themes.light, toggleTheme });
   const [interval, setInterval] = useState('1h');
   const [selectedCurrency, setSelectedCurrency] = useState([]);
   const { cryptoData, loading, error } = useFetchCryptoData(interval, selectedCurrency);
 
   // Toggle Light Theme
   function toggleTheme() {
-    setTheme(state => ({
+    setTheme((state) => ({
       theme:
         state.theme === themes.dark
           ? themes.light
           : themes.dark,
-    }))
+    }));
   }
 
   // Render currency buttons
   function renderCurrencies(theme) {
-    return currencies.map((currency) => {
-      return (
-        <button
-          onClick={() =>
-            // Add/Remove element from currency array
-            selectedCurrency.includes(currency)
-              ? setSelectedCurrency(selectedCurrency.filter((el) => el !== currency))
-              : setSelectedCurrency([...selectedCurrency, currency])
-          }
-          data-currency={currency}
-          key={currency}
-          className={selectedCurrency.includes(currency) ? "selected btn" : "btn"}
-          style={{
-            background: theme.foreground,
-            color: theme.textcolor,
-            border: `1px solid ${theme.bordercolor}`
-          }}
-        >
-          {currency}
-          {selectedCurrency.includes(currency)
-            ? (<i className="fas fa-check-circle"></i>)
-            : ('')
-          }
-        </button>
-      );
-    });
+    return currencies.map((currency) => (
+      <button
+        key={currency}
+        onClick={() => (selectedCurrency.includes(currency)
+          ? setSelectedCurrency(selectedCurrency.filter((el) => el !== currency))
+          : setSelectedCurrency([...selectedCurrency, currency]))}
+        type="button"
+        data-currency={currency}
+        className={selectedCurrency.includes(currency) ? 'selected btn' : 'btn'}
+        style={{
+          background: theme.foreground,
+          color: theme.textcolor,
+          border: `1px solid ${theme.bordercolor}`,
+        }}
+      >
+        {currency}
+        {selectedCurrency.includes(currency)
+          ? (<i className="fas fa-check-circle" />)
+          : ('')}
+      </button>
+    ));
   }
 
   // Render Interval buttons
   function renderIntervals(theme) {
-    return intervals.map((time) => {
-      return (
-        <button
-          key={time}
-          onClick={() => setInterval(time)}
-          data-interval={time}
-          className={`${interval.includes(time) ? "selected btn" : "btn"}`}
-          style={{
-            background: theme.foreground,
-            color: theme.textcolor,
-            border: `1px solid ${theme.bordercolor}`
-          }}
-        >
-          {time}
-          {interval.includes(time)
-            ? (<i className="fas fa-check-circle"></i>)
-            : ("")
-          }
-        </button>
-      );
-    });
+    return intervals.map((time) => (
+      <button
+        key={time}
+        onClick={() => setInterval(time)}
+        type="button"
+        data-interval={time}
+        className={`${interval.includes(time) ? 'selected btn' : 'btn'}`}
+        style={{
+          background: theme.foreground,
+          color: theme.textcolor,
+          border: `1px solid ${theme.bordercolor}`,
+        }}
+      >
+        {time}
+        {interval.includes(time)
+          ? (<i className="fas fa-check-circle" />)
+          : ('')}
+      </button>
+    ));
   }
 
   document.body.style.background = theme.theme.background;
   return (
     <ThemeContext.Provider value={theme.theme}>
       <ThemeContext.Consumer>
-        {theme => (
+        {(theme) => (
           <div className="container">
             <ThemeButton toggleTheme={toggleTheme} />
 
@@ -114,20 +107,21 @@ export default function App() {
               {renderIntervals(theme)}
             </div>
 
-            {loading &&
-              <>
-                <div className="placeholder" style={{ background: theme.placeholderbackground }} ></div>
-                <div className="placeholder" style={{ background: theme.placeholderbackground }}></div>
-              </>
-            }
+            {loading
+              && (
+                <>
+                  <div className="placeholder" style={{ background: theme.placeholderbackground }} />
+                  <div className="placeholder" style={{ background: theme.placeholderbackground }} />
+                </>
+              )}
             {error && <h1>Error... Try refreshing</h1>}
-            {cryptoData.map((data) => {
-              return <ApexChart key={data.id} data={data} interval={interval} theme={theme} />;
-            })}
+            {cryptoData.map((data) => <ApexChart key={data.id} data={data} interval={interval} theme={theme} />)}
 
+            <div className="placeholder" style={{ background: theme.placeholderbackground }} />
+            <div className="placeholder" style={{ background: theme.placeholderbackground }} />
           </div>
         )}
       </ThemeContext.Consumer>
     </ThemeContext.Provider>
   );
-};
+}

@@ -5,7 +5,7 @@ const ACTIONS = {
   MAKE_REQUEST: 'MAKE_REQUEST',
   GET_DATA: 'GET_DATA',
   ERROR: 'ERROR',
-}
+};
 
 const BASE_URL = 'https://cors-anywhere.herokuapp.com/https://api.nomics.com/v1/currencies/ticker?key=4b9ef3848d3b670d28ce19e1b092f128';
 
@@ -39,15 +39,15 @@ export default function useFetchCharts(interval, currency) {
     axios.get(BASE_URL, {
       params: {
         interval,
-        ids: currency.length === 0 ? 'BTC' : 'BTC,' + currency.join(),
+        ids: currency.length === 0 ? 'BTC' : `BTC, ${currency.join()}`,
         convert: 'EUR',
-      }
+      },
     }).then((res) => {
       dispatch({ type: ACTIONS.GET_DATA, payload: { cryptodata: res.data } });
     }).catch((error) => {
       dispatch({ type: ACTIONS.ERROR, payload: { error } });
-    })
-  }, [interval, currency])
+    });
+  }, [interval, currency]);
 
   return state;
 }

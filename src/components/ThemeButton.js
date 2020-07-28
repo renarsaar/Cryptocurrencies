@@ -7,6 +7,7 @@ export default function ThemeButton(props) {
       {(theme) => (
         <button
           className="theme"
+          type="button"
           onClick={props.toggleTheme}
           style={{
             backgroundColor: theme.background,
@@ -14,7 +15,7 @@ export default function ThemeButton(props) {
             border: `1px solid ${theme.bordercolor}`,
           }}
         >
-          <i className={`fas fa-${theme.background === '#222' ? 'sun' : 'moon'}`}></i>
+          <i className={`fas fa-${theme.type === 'dark' ? 'sun' : 'moon'}`} />
         </button>
       )}
     </ThemeContext.Consumer>

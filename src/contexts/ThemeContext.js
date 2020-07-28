@@ -18,7 +18,7 @@ export const themes = {
     bordercolor: '#696969',
     boxshadow: '2px 2px 10px #696969',
     placeholderbackground: 'linear-gradient(to right, #222 2%, #313131 18%, #222 33%)',
-  }
+  },
 };
 
 export const ThemeContext = React.createContext({

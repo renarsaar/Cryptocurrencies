@@ -200,19 +200,18 @@ body {
 
 // Content placeholder
 .placeholder {
-  width: 80%;
   height: 200px;
   margin: 2rem;
   position: relative;
   animation: 1.7s forwards infinite linear contentPlaceholder;
-  background-size: 1300px;
+  // background-size: 1300px;
 }
 
 @keyframes contentPlaceholder {
   0% {
-    background-position: -650px 0;
+    background-position: -200px 0;
   }
   100% {
-    background-position: 650px 0;
+    background-position: 900px 0;
   }
 }
