@@ -19,5 +19,5 @@ export default function ThemeButton(props) {
         </button>
       )}
     </ThemeContext.Consumer>
-  )
+  );
 }

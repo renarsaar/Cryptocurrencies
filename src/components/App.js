@@ -26,7 +26,7 @@ const currencies = [
 const intervals = ['1h', '1d', '7d', '30d', '365d', 'ytd'];
 
 export default function App() {
-  const [theme, setTheme] = useState({ theme: themes.light, toggleTheme });
+  const [theme, setTheme] = useState({ theme: localStorage.getItem('theme') === 'dark' ? themes.dark : themes.light, toggleTheme });
   const [interval, setInterval] = useState('1h');
   const [selectedCurrency, setSelectedCurrency] = useState([]);
   const { cryptoData, loading, error } = useFetchCryptoData(interval, selectedCurrency);
@@ -89,6 +89,7 @@ export default function App() {
     ));
   }
 
+  localStorage.setItem('theme', theme.theme.type);
   document.body.style.background = theme.theme.background;
   return (
     <ThemeContext.Provider value={theme.theme}>
@@ -116,9 +117,6 @@ export default function App() {
               )}
             {error && <h1>Error... Try refreshing</h1>}
             {cryptoData.map((data) => <ApexChart key={data.id} data={data} interval={interval} theme={theme} />)}
-
-            <div className="placeholder" style={{ background: theme.placeholderbackground }} />
-            <div className="placeholder" style={{ background: theme.placeholderbackground }} />
           </div>
         )}
       </ThemeContext.Consumer>
