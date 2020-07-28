@@ -7,6 +7,7 @@ export const themes = {
     textcolor: '#333',
     bordercolor: '#d5d5d5',
     boxshadow: '2px 2px 10px #d5d5d5',
+    placeholderbackground: 'linear-gradient(to right, #eee 2%, #dddddd 18%, #eee 33%)',
   },
   dark: {
     foreground: '#111',
@@ -14,6 +15,7 @@ export const themes = {
     textcolor: '#eee',
     bordercolor: '#696969',
     boxshadow: '2px 2px 10px #696969',
+    placeholderbackground: 'linear-gradient(to right, #222 2%, #313131 18%, #222 33%)',
   }
 };
 

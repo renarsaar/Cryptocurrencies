@@ -116,12 +116,9 @@ body {
 .placeholder {
   width: 80%;
   height: 200px;
-  background-color: #d5d5d5;
   margin: 2rem;
   position: relative;
   animation: 1.7s forwards infinite linear contentPlaceholder;
-  background: #fcfcfc;
-  background: linear-gradient(to right, #eee 2%, #dddddd 18%, #eee 33%);
   background-size: 1300px; }
 
 @keyframes contentPlaceholder {

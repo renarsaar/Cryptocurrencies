@@ -175,12 +175,9 @@ body {
 .placeholder {
   width: 80%;
   height: 200px;
-  background-color: $medium-color;
   margin: 2rem;
   position: relative;
   animation: 1.7s forwards infinite linear contentPlaceholder;
-  background: $light-color;
-  background: linear-gradient(to right, #eee 2%, #dddddd 18%, #eee 33%);
   background-size: 1300px;
 }
 
