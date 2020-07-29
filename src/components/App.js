@@ -111,8 +111,8 @@ export default function App() {
             {loading
               && (
                 <>
-                  <div className="placeholder" style={{ background: theme.placeholderbackground }} />
-                  <div className="placeholder" style={{ background: theme.placeholderbackground }} />
+                  <div className="placeholder" style={{ background: theme.placeholderbackground, boxShadow: theme.boxshadow }} />
+                  <div className="placeholder" style={{ background: theme.placeholderbackground, boxShadow: theme.boxshadow }} />
                 </>
               )}
             {error && <h1>Error... Try refreshing</h1>}
