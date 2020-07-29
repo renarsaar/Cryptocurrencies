@@ -99,12 +99,12 @@ export default function App() {
             <ThemeButton toggleTheme={toggleTheme} />
 
             <div className="currencies">
-              <h3 style={{ color: theme.textcolor }}>1) Select Cryptocurrencies</h3>
+              <h3 style={{ color: theme.textcolor }}>2) Select Cryptocurrencies</h3>
               {renderCurrencies(theme)}
             </div>
 
             <div className="interval">
-              <h3 style={{ color: theme.textcolor }}>2) Select Interval</h3>
+              <h3 style={{ color: theme.textcolor }}>3) Select Interval</h3>
               {renderIntervals(theme)}
             </div>
 
