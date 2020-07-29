@@ -10,7 +10,7 @@ export default function ThemeButton(props) {
           type="button"
           onClick={props.toggleTheme}
           style={{
-            backgroundColor: theme.background,
+            backgroundColor: theme.foreground,
             color: theme.textcolor,
             border: `1px solid ${theme.bordercolor}`,
           }}
