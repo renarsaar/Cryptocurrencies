@@ -131,8 +131,10 @@ export default function ApexChart({ data, interval, theme }) {
               <span className="highlight">
                 {`${numberWithCommas(data.price)} €. `}
               </span>
-              {' '}
-              {timeSince(data.high_timestamp)}
+              <span className="time-ago">
+                {' '}
+                {timeSince(data.high_timestamp)}
+              </span>
             </div>
           </div>
         </div>
@@ -205,6 +207,44 @@ export default function ApexChart({ data, interval, theme }) {
               },
             },
           },
+          responsive: [
+            {
+              breakpoint: 490,
+              options: {
+                chart: {
+                  height: 300,
+                  width: 350,
+                }
+              }
+            },
+            {
+              breakpoint: 430,
+              options: {
+                chart: {
+                  height: 270,
+                  width: 300,
+                }
+              }
+            },
+            {
+              breakpoint: 370,
+              options: {
+                chart: {
+                  height: 270,
+                  width: 250,
+                }
+              }
+            },
+            {
+              breakpoint: 310,
+              options: {
+                chart: {
+                  height: 230,
+                  width: 200,
+                }
+              }
+            },
+          ],
         }}
         style={{
           display: 'flex',

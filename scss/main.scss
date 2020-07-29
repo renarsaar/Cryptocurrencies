@@ -21,7 +21,6 @@ body {
   background: $lighter-color;
   width: 1180px;
   transition: background 0.2s ease;
-  min-height: 100vh;
   margin: 50px auto 50px auto;
 }
 
@@ -70,48 +69,35 @@ body {
   }
 }
 
-// Tooltip container
-.tooltip {
-  position: relative;
-  display: inline-block;
-  font-size: 1.3rem;
-
-  &:hover .tooltiptext {
-    visibility: visible;
-  }
-
-  .tooltiptext {
-    visibility: hidden;
-    width: 120px;
-    text-align: center;
-    border-radius: 6px;
-    padding: 8px;
-    position: absolute;
-    z-index: 1;
-    bottom: 50%;
-    left: -50px;
-    margin-left: -60px;
-  }
-}
-
+// THEME
 .theme {
-  cursor: pointer;
-  position: absolute;
-  content: "";
-  top: 20px;
-  right: 20px;
-  border: 0;
-  padding: 0.5rem;
-  border-radius: 2px;
-  font-size: 1.4rem;
+  display: flex;
+
+  h3 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    font-weight: normal;
+    transition: color 0.2s ease;
+  }
+
+   i {
+    cursor: pointer;	
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    margin-left: 2rem;
+    width: 45px;
+    height: 45px;
+    border-radius: 2px;
+  }
 
   &:focus {
     outline: none;
   }
 }
 
-
-
+// CURRENCIES
 .currencies {
   h3 {
     font-size: 2rem;
@@ -121,6 +107,7 @@ body {
   }
 }
 
+// INTERVAL
 .interval {
   h3 {
     font-size: 2rem;
@@ -130,8 +117,8 @@ body {
   }
 }
 
+// CHART
 .container {
-  // Left Side / Single Item
   .chart {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -191,6 +178,31 @@ body {
 
           div {
             margin: 1rem 0;
+
+            // TOOLTIP
+            .tooltip {
+              position: relative;
+              display: inline-block;
+              font-size: 1.3rem;
+              margin: 0;
+
+              &:hover .tooltiptext {
+                visibility: visible;
+              }
+
+              .tooltiptext {
+                visibility: hidden;
+                width: 120px;
+                text-align: center;
+                border-radius: 6px;
+                padding: 8px;
+                position: absolute;
+                z-index: 1;
+                bottom: 50%;
+                left: -50px;
+                margin-left: -60px;
+              }
+            }
           }
         }
       }
@@ -204,7 +216,6 @@ body {
   margin: 2rem;
   position: relative;
   animation: 1.7s forwards infinite linear contentPlaceholder;
-  // background-size: 1300px;
 }
 
 @keyframes contentPlaceholder {
@@ -213,5 +224,80 @@ body {
   }
   100% {
     background-position: 900px 0;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  body {
+    width: 950px;
+  }
+}
+
+@media only screen and (max-width: 990px) {
+  body {
+    width: 90%;
+  }
+
+  .container {
+    .chart {
+      display: grid;
+      grid-template-columns: 1fr;
+      padding-top: 3rem;
+    }
+  }
+}
+
+@media only screen and (max-width: 590px) {
+  .container .chart {
+    .line {
+      display: block !important;
+    }
+
+    .single .item {
+      font-size: 0.7rem;
+      width: 90%;
+      padding: 0;
+      height: 210px;
+
+      .name {
+        display: inline;
+        
+        .rank {
+          font-size: 1rem;
+        }
+      }
+  
+      .prices div {
+        font-size: 0.9rem;
+
+        span {
+          font-size: 1rem;
+        }
+
+        .time-ago {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  body {
+    margin-top: 35px;
+  }
+
+  .theme, .currencies, .interval {
+      h3 {
+        font-size: 1.4rem;
+      }
+    }
+
+  .theme i {
+    margin-top: -10px;
+  }
+
+  .btn {
+    padding: 0.4rem 1rem;
   }
 }

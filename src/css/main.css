@@ -9,7 +9,6 @@ body {
   background: #eee;
   width: 1180px;
   transition: background 0.2s ease;
-  min-height: 100vh;
   margin: 50px auto 50px auto; }
 
 .selected {
@@ -45,34 +44,23 @@ body {
     right: -4px;
     color: #0f7428; }
 
-.tooltip {
-  position: relative;
-  display: inline-block;
-  font-size: 1.3rem; }
-  .tooltip:hover .tooltiptext {
-    visibility: visible; }
-  .tooltip .tooltiptext {
-    visibility: hidden;
-    width: 120px;
-    text-align: center;
-    border-radius: 6px;
-    padding: 8px;
-    position: absolute;
-    z-index: 1;
-    bottom: 50%;
-    left: -50px;
-    margin-left: -60px; }
-
 .theme {
-  cursor: pointer;
-  position: absolute;
-  content: "";
-  top: 20px;
-  right: 20px;
-  border: 0;
-  padding: 0.5rem;
-  border-radius: 2px;
-  font-size: 1.4rem; }
+  display: flex; }
+  .theme h3 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    font-weight: normal;
+    transition: color 0.2s ease; }
+  .theme i {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    margin-left: 2rem;
+    width: 45px;
+    height: 45px;
+    border-radius: 2px; }
   .theme:focus {
     outline: none; }
 
@@ -131,6 +119,24 @@ body {
         margin-top: 1rem; }
         .container .chart .single .item .prices div {
           margin: 1rem 0; }
+          .container .chart .single .item .prices div .tooltip {
+            position: relative;
+            display: inline-block;
+            font-size: 1.3rem;
+            margin: 0; }
+            .container .chart .single .item .prices div .tooltip:hover .tooltiptext {
+              visibility: visible; }
+            .container .chart .single .item .prices div .tooltip .tooltiptext {
+              visibility: hidden;
+              width: 120px;
+              text-align: center;
+              border-radius: 6px;
+              padding: 8px;
+              position: absolute;
+              z-index: 1;
+              bottom: 50%;
+              left: -50px;
+              margin-left: -60px; }
 
 .placeholder {
   height: 200px;
@@ -143,3 +149,44 @@ body {
     background-position: -200px 0; }
   100% {
     background-position: 900px 0; } }
+
+@media only screen and (max-width: 1200px) {
+  body {
+    width: 950px; } }
+
+@media only screen and (max-width: 990px) {
+  body {
+    width: 90%; }
+  .container .chart {
+    display: grid;
+    grid-template-columns: 1fr;
+    padding-top: 3rem; } }
+
+@media only screen and (max-width: 590px) {
+  .container .chart .line {
+    display: block !important; }
+  .container .chart .single .item {
+    font-size: 0.7rem;
+    width: 90%;
+    padding: 0;
+    height: 210px; }
+    .container .chart .single .item .name {
+      display: inline; }
+      .container .chart .single .item .name .rank {
+        font-size: 1rem; }
+    .container .chart .single .item .prices div {
+      font-size: 0.9rem; }
+      .container .chart .single .item .prices div span {
+        font-size: 1rem; }
+      .container .chart .single .item .prices div .time-ago {
+        display: none; } }
+
+@media only screen and (max-width: 450px) {
+  body {
+    margin-top: 35px; }
+  .theme h3, .currencies h3, .interval h3 {
+    font-size: 1.4rem; }
+  .theme i {
+    margin-top: -10px; }
+  .btn {
+    padding: 0.4rem 1rem; } }
