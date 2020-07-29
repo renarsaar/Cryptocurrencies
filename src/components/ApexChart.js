@@ -144,7 +144,7 @@ export default function ApexChart({ data, interval, theme }) {
         height={300}
         series={[{
           name: data.name,
-          data: [data.price, data.price, data.price - data[interval].price_change],
+          data: [data.price - data[interval].price_change, data.price - data[interval].price_change, data.price],
         }]}
         options={{
           chart: {
@@ -165,6 +165,7 @@ export default function ApexChart({ data, interval, theme }) {
           },
           stroke: {
             curve: 'smooth',
+            colors: data[interval].price_change >= 0 ? '#1AC40E' : '#C40E0E',
           },
           title: {
             text: `${data.name} price change.`,
